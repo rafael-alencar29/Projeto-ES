@@ -3,11 +3,15 @@ package com.example.ingressosonline;
 public class Evento {
 
     private String nome;
-    private String codigo;
+    private String codigoEvento;
+    private String codigoApresentacao;
     private String data;
     private String horario;
     private double preco;
-    private int quant_ingressos;
+    private String codigoSala;
+    private String cidade;
+    private String Estado;
+
     private String classe;                 //categoria: Teatro, cinema, Show nacional,Show internacional
     private String faixa_etaria;
 
@@ -23,12 +27,20 @@ public class Evento {
         this.nome = nome;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getCodigoEvento() {
+        return codigoEvento;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigoEvento(String codigoEvento) {
+        this.codigoEvento = codigoEvento;
+    }
+
+    public String getCodigoApresentacao() {
+        return codigoApresentacao;
+    }
+
+    public void setCodigoApresentacao(String codigoApresentacao) {
+        this.codigoApresentacao = codigoApresentacao;
     }
 
     public String getData() {
@@ -55,12 +67,28 @@ public class Evento {
         this.preco = preco;
     }
 
-    public int getQuant_ingressos() {
-        return quant_ingressos;
+    public String getCodigoSala() {
+        return codigoSala;
     }
 
-    public void setQuant_ingressos(int quant_ingressos) {
-        this.quant_ingressos = quant_ingressos;
+    public void setCodigoSala(String codigoSala) {
+        this.codigoSala = codigoSala;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String estado) {
+        Estado = estado;
     }
 
     public String getClasse() {
