@@ -10,6 +10,7 @@ public class Menu_opcoes extends AppCompatActivity {
 
 
     Button comprar;
+    Button cadastrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,16 @@ public class Menu_opcoes extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Menu_opcoes.this, Menu_ingressos.class);
+                startActivity(intent);
+            }
+        });
+
+        cadastrar = findViewById(R.id.cadastrar);
+
+        cadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Menu_opcoes.this,Login.class );
                 startActivity(intent);
             }
         });

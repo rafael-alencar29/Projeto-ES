@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "46525413819",
+    "firebase_url": "https://ingressosonline-66b6e.firebaseio.com",
+    "project_id": "ingressosonline-66b6e",
+    "storage_bucket": "ingressosonline-66b6e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:46525413819:android:bb97226199a64035",
+        "android_client_info": {
+          "package_name": "com.example.ingressosonline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "46525413819-mvumpap8vqj48oc1pqo4bhd1os5m6vlf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ingressosonline",
+            "certificate_hash": "d2e8e8dfa3c1efb527198b79ff59c70ddae719f3"
+          }
+        },
+        {
+          "client_id": "46525413819-g5eaovin4civr0p09lej9931p2uo8acc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBikreOcGAqUb27nUtTB-SUVSnz1s2jf3o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "46525413819-g5eaovin4civr0p09lej9931p2uo8acc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
