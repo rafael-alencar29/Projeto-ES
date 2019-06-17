@@ -16,6 +16,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 public class CadastroUsuario extends AppCompatActivity {
 
     Button ConfirmarCadastro;
@@ -30,9 +32,6 @@ public class CadastroUsuario extends AppCompatActivity {
     TextView NumeroCartao_usuario;
     TextView CodigoSegurança_usuario;
     TextView Validade_usuario;
-
-    /*Converte variáveis para o tipo string*/
-
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -93,5 +92,7 @@ public class CadastroUsuario extends AppCompatActivity {
             Toast.makeText(CadastroUsuario.this, "Preencha os dados corretamente.", Toast.LENGTH_LONG).show();
         }
 
+
     }
+
 }

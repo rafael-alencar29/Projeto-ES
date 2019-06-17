@@ -2,12 +2,14 @@ package com.example.ingressosonline;
 
 public class Evento {
 
+    private String id;
+    private String idUser;
     private String nome;
     private String codigoEvento;
     private String codigoApresentacao;
     private String data;
     private String horario;
-    private double preco;
+    private String preco;
     private String codigoSala;
     private String cidade;
     private String Estado;
@@ -17,6 +19,40 @@ public class Evento {
 
     public Evento(){
 
+    }
+
+    public Evento(String id, String idUser, String nome, String codigoEvento, String codigoApresentacao,
+                  String data, String horario, String preco, String codigoSala, String cidade, String estado,
+                  String classe, String faixa_etaria) {
+        this.id = id;
+        this.idUser = idUser;
+        this.nome = nome;
+        this.codigoEvento = codigoEvento;
+        this.codigoApresentacao = codigoApresentacao;
+        this.data = data;
+        this.horario = horario;
+        this.preco = preco;
+        this.codigoSala = codigoSala;
+        this.cidade = cidade;
+        this.Estado = estado;
+        this.classe = classe;
+        this.faixa_etaria = faixa_etaria;
+    }
+
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -59,11 +95,11 @@ public class Evento {
         this.horario = horario;
     }
 
-    public double getPreco() {
+    public String getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(String preco) {
         this.preco = preco;
     }
 

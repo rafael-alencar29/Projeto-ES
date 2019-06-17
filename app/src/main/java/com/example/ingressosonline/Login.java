@@ -1,22 +1,16 @@
 package com.example.ingressosonline;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -25,7 +19,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 
-import java.net.PasswordAuthentication;
 import java.util.ArrayList;
 
 public class Login extends AppCompatActivity {
@@ -34,7 +27,8 @@ public class Login extends AppCompatActivity {
     DatabaseReference reference;
     private StorageReference mStorageRef;
 
-    ArrayList<String> keys;
+    public ArrayList<String> keys;
+
     ArrayList<Usuario> users;
 
 
@@ -44,6 +38,9 @@ public class Login extends AppCompatActivity {
 
     EditText CPF_user;
     EditText Senha_user;
+
+    public String X;
+
 
 
 
@@ -63,6 +60,10 @@ public class Login extends AppCompatActivity {
         CPF_user = (EditText) findViewById(R.id.CPF);
         Senha_user = (EditText) findViewById(R.id.senha);
 
+        X = CPF_user.toString();
+
+
+
 
 
         entrar = findViewById(R.id.entrar);
@@ -72,8 +73,8 @@ public class Login extends AppCompatActivity {
 
 
                     reference.addValueEventListener(new ValueEventListener() {
-                        String CPF = CPF_user.getText().toString();
-                        String Senha = Senha_user.getText().toString();
+                         String CPF = CPF_user.getText().toString();
+                         String Senha = Senha_user.getText().toString();
 
                         String usario_key = ""; //nova variavel
 
@@ -91,7 +92,7 @@ public class Login extends AppCompatActivity {
                             for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
 
                                 String key=dataSnapshot1.getKey();
-                                keys.add(key);
+                                keys.add(key); //Armazena o id do usuario
 
                                 Usuario user = dataSnapshot1.getValue(Usuario.class);
                                 users.add(user);
@@ -105,16 +106,23 @@ public class Login extends AppCompatActivity {
                                 }
                                 i++;
 
+
                             }
+
+
                             if(CPF.isEmpty() || Senha.isEmpty()){
                                 Toast.makeText(Login.this, "Preencha todo os campos", Toast.LENGTH_LONG).show();
                             }else if(CPF.trim().equals(CPF__firebase) && (Senha.trim().equals(Senha_firebase))){
-                                Intent intent = new Intent(Login.this,CadastrarEvento.class);
-                                startActivity(intent);
+                                    CPF = CPF__firebase;
+                                    Senha = Senha_firebase;
+
+                                    //Bundle dataBundle = new Bundle();
+
+                                    Intent intent = new Intent(Login.this,CadastrarEvento.class);
+                                    startActivity(intent);
                             }else{
                                 Toast.makeText(Login.this, "CPF ou senha incorretos", Toast.LENGTH_LONG).show();
                             }
-
 
                             /*
                                 if(CPF.trim().equals(CPF__firebase) && (Senha.trim().equals(Senha_firebase)) ){
@@ -161,8 +169,6 @@ public class Login extends AppCompatActivity {
                         }
                         */
                     }
-
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -180,15 +186,14 @@ public class Login extends AppCompatActivity {
 
                 Intent intent = new Intent(Login.this,CadastroUsuario.class);
                 startActivity(intent);
+
             }
         });
 
         // Initialize Firebase Auth
         //mAuth = FirebaseAuth.getInstance();
-
-
-
     }
+
 
     /*
     @Override
@@ -216,5 +221,4 @@ public class Login extends AppCompatActivity {
         }
     }
     */
-
 }
