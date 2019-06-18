@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="250dp">
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="7dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nome_apre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nome"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/cod_apre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Código"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/data_apre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Data"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/Hora_apre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Horário"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/preco_apre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Preço"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/sala_apre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sala"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/classe_apre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Classe"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/faixa_apre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="FaixaEtário"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/qtd_ingre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ingressos: 40"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>

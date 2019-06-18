@@ -31,7 +31,6 @@ public class Login extends AppCompatActivity {
 
     ArrayList<Usuario> users;
 
-
     private FirebaseAuth mAuth;
     TextView  cadastro;
     Button entrar;
@@ -39,19 +38,15 @@ public class Login extends AppCompatActivity {
     EditText CPF_user;
     EditText Senha_user;
 
-    public String X;
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+
         mStorageRef = FirebaseStorage.getInstance().getReference();
         reference = FirebaseDatabase.getInstance().getReference().child("usuarios");
-
 
         users = new ArrayList<Usuario>();
         keys = new ArrayList<String>();
@@ -59,12 +54,6 @@ public class Login extends AppCompatActivity {
         /*Tentativa de login do usuario*/
         CPF_user = (EditText) findViewById(R.id.CPF);
         Senha_user = (EditText) findViewById(R.id.senha);
-
-        X = CPF_user.toString();
-
-
-
-
 
         entrar = findViewById(R.id.entrar);
         entrar.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +78,7 @@ public class Login extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             int i = 0;
+
                             for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
 
                                 String key=dataSnapshot1.getKey();
@@ -103,72 +93,23 @@ public class Login extends AppCompatActivity {
                                 if( CPF.trim().equals(aux)   && Senha.trim().equals(aux2) ){
                                      CPF__firebase  = aux;
                                      Senha_firebase = aux2;
+
                                 }
                                 i++;
-
-
                             }
-
-
                             if(CPF.isEmpty() || Senha.isEmpty()){
                                 Toast.makeText(Login.this, "Preencha todo os campos", Toast.LENGTH_LONG).show();
                             }else if(CPF.trim().equals(CPF__firebase) && (Senha.trim().equals(Senha_firebase))){
                                     CPF = CPF__firebase;
                                     Senha = Senha_firebase;
 
-                                    //Bundle dataBundle = new Bundle();
-
                                     Intent intent = new Intent(Login.this,CadastrarEvento.class);
+                                    intent.putExtra("CPF",CPF);
                                     startActivity(intent);
                             }else{
                                 Toast.makeText(Login.this, "CPF ou senha incorretos", Toast.LENGTH_LONG).show();
                             }
-
-                            /*
-                                if(CPF.trim().equals(CPF__firebase) && (Senha.trim().equals(Senha_firebase)) ){
-                                    Toast.makeText(Login.this, "Yeah" + CPF, Toast.LENGTH_LONG).show();
-                                    //Toast.makeText(Login.this, "" + CPF, Toast.LENGTH_LONG).show();
-                                    Intent intent = new Intent(Login.this,CadastrarEvento.class);
-                                    startActivity(intent);
-
-                                }else{
-                                    Toast.makeText(Login.this, "No" , Toast.LENGTH_LONG).show();
-                                }
-                                */
-                                //Toast.makeText(Login.this, "" + users.get(i).getCPF(), Toast.LENGTH_LONG).show();
-                                //Toast.makeText(Login.this, "" + users.get(i).getSenha(), Toast.LENGTH_LONG).show();
-
-
-
-                            //Toast.makeText(Login.this, ""+ users.get(0).getCPF().toString(), Toast.LENGTH_LONG).show();
-                            //Toast.makeText(Login.this, ""+ users.get(0).getSenha().toString(), Toast.LENGTH_LONG).show();
-
-                            /*
-                            if(CPF.isEmpty() ||Senha.isEmpty()) {
-                            Toast.makeText(Login.this, "Preencha todo os campos", Toast.LENGTH_LONG).show();
-                            }else{
-                                if((CPF == CPF__firebase) && (Senha == Senha_firebase)){
-
-                                    Intent intent = new Intent(Login.this,CadastrarEvento.class);
-                                    startActivity(intent);
-                                }else{
-                                    Toast.makeText(Login.this, "CPF ou senha incorretos", Toast.LENGTH_LONG).show();
-                                }
-                            }
-                            */
-
-                        /*
-                        if(CPF_user == null  || Senha_user == null){
-                            Toast.makeText(Login.this, "Preencha todo os campos", Toast.LENGTH_LONG).show();
-
-                        }else if(CPF_user.toString() != CPF__firebase || Senha_user.toString() != Senha_firebase){
-                            Toast.makeText(Login.this, "CPF ou senha incorretos", Toast.LENGTH_LONG).show();
-                        }else{
-                            Intent intent = new Intent(Login.this,CadastrarEvento.class);
-                            startActivity(intent);
                         }
-                        */
-                    }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -189,36 +130,5 @@ public class Login extends AppCompatActivity {
 
             }
         });
-
-        // Initialize Firebase Auth
-        //mAuth = FirebaseAuth.getInstance();
     }
-
-
-    /*
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-    }
-
-    public void updateUI(FirebaseUser user){
-
-        if(user == null){
-            mAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()){
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        updateUI(user);
-                    }else{
-                        updateUI(null);
-                    }
-                }
-            });
-        }
-    }
-    */
 }

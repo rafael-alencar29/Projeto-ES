@@ -41,6 +41,7 @@ public class CadastrarEvento extends AppCompatActivity {
     TextView cod_classe;
     TextView cod_faixaEtaria;
 
+
     /* Declaração para cadastro no database */
     DatabaseReference databaseReference1, IdUsuario, referencia;
 
@@ -48,6 +49,7 @@ public class CadastrarEvento extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_evento);
+
 
         /* Funcoes para cadastrar no banco */
         databaseReference1 = FirebaseDatabase.getInstance().getReference("eventos");
@@ -78,64 +80,18 @@ public class CadastrarEvento extends AppCompatActivity {
             }
         });
     }
-
-   /*
     public void addEvento(){
-        String codigo = codigo_id.getText().toString();
-        String nomeEvento = nome_evento.getText().toString();
-        String apresentacao = cod_apre.getText().toString();
-        String data = cod_data.getText().toString();
-        String hora = cod_Hora.getText().toString();
-        String preco = cod_preco.getText().toString();
-        String sala = cod_sala.getText().toString();
-        String cidade = cod_cidade.getText().toString();
-        String estado = cod_Estado.getText().toString();
-        String classe = cod_classe.getText().toString();
-        String faixaEtaria = cod_faixaEtaria.getText().toString();
-
-
-        if (!TextUtils.isEmpty(codigo)){
-            String id = databaseReference1.push().getKey();
-            //String id_usuario = IdUsuario.push().getKey();
-            //String id_usuario = FirebaseAuth.getInstance().getUid();
-
-
-
-
-            String  id_usuario = IdUsuario.child(id).getKey();
-
-
-            //Idusers();
-
-            RetornaId();
-            Toast.makeText(CadastrarEvento.this, ""+ D.size(), Toast.LENGTH_LONG).show();
-
-            Evento evento = new Evento(id,id_usuario,nomeEvento,codigo,apresentacao,data,hora,preco,sala,cidade,estado,classe,faixaEtaria);
-            databaseReference1.child(id).setValue(evento);
-
-            codigo_id.setText("");
-            nome_evento.setText("");
-            cod_apre.setText("");
-            cod_data.setText("");
-            cod_Hora.setText("");
-            cod_preco.setText("");
-            cod_sala.setText("");
-            cod_cidade.setText("");
-            cod_Estado.setText("");
-            cod_classe.setText("");
-            cod_faixaEtaria.setText("");
-
-        }else{
-            Toast.makeText(CadastrarEvento.this, "Preencha os dados corretamente.", Toast.LENGTH_LONG).show();
-        }
-    }
-    */
-    public void addEvento(){
-
 
         referencia.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int index = 0;
+                int achouID = 0;
+
+                Intent intent = getIntent();
+                String CPF_obtido = intent.getStringExtra("CPF");
+                //Toast.makeText(CadastrarEvento.this, ""+CPF_obtido, Toast.LENGTH_LONG).show();
+
                 for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
 
                     String key = dataSnapshot1.getKey();
@@ -145,12 +101,12 @@ public class CadastrarEvento extends AppCompatActivity {
 
                     CPF_users.add(user.getCPF());
 
+                    if (CPF_obtido.equals(user.getCPF())){
+                        achouID = index;
+                    }
+                    index++;
+
                 }
-                //Toast.makeText(CadastrarEvento.this, ""+ chaves.size(), Toast.LENGTH_LONG).show();
-
-                //Toast.makeText(CadastrarEvento.this, ""+ chaves.get(0), Toast.LENGTH_LONG).show();
-                //Toast.makeText(CadastrarEvento.this, ""+ chaves.get(1), Toast.LENGTH_LONG).show();
-
                 String codigo = codigo_id.getText().toString();
                 String nomeEvento = nome_evento.getText().toString();
                 String apresentacao = cod_apre.getText().toString();
@@ -163,7 +119,7 @@ public class CadastrarEvento extends AppCompatActivity {
                 String classe = cod_classe.getText().toString();
                 String faixaEtaria = cod_faixaEtaria.getText().toString();
 
-
+                //Toast.makeText(CadastrarEvento.this, ""+ achouID, Toast.LENGTH_LONG).show();
 
                 if (!TextUtils.isEmpty(codigo)){
                     String id = databaseReference1.push().getKey();
@@ -171,18 +127,10 @@ public class CadastrarEvento extends AppCompatActivity {
                     //String id_usuario = FirebaseAuth.getInstance().getUid();
 
                     String  id_usuario = "";
-                    //Toast.makeText(CadastrarEvento.this, ""+ CPF_users.get(0), Toast.LENGTH_LONG).show();
 
+                    id_usuario = chaves.get(achouID);
 
-                    Login login = new Login();
-
-
-
-
-
-                   // Toast.makeText(CadastrarEvento.this, "", Toast.LENGTH_LONG).show();
-
-
+                    // Toast.makeText(CadastrarEvento.this, "", Toast.LENGTH_LONG).show();
                     Evento evento = new Evento(id,id_usuario,nomeEvento,codigo,apresentacao,data,hora,preco,sala,cidade,estado,classe,faixaEtaria);
                     databaseReference1.child(id).setValue(evento);
 

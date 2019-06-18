@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -39,7 +40,7 @@ public class CadastroUsuario extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_usuario);
 
 
-        /* Funcoes para cadastrar no banco */
+        /* Referencia para cadastrar no banco */
         databaseReference = FirebaseDatabase.getInstance().getReference("usuarios");
 
         CPF_usuario = findViewById(R.id.CPF_cadastro);
@@ -72,6 +73,7 @@ public class CadastroUsuario extends AppCompatActivity {
         String ValidadeCartao =Validade_usuario.getText().toString();
 
 
+
         if (!TextUtils.isEmpty(CPF)){
             String id = databaseReference.push().getKey();
             String id_usuario = FirebaseAuth.getInstance().getUid();
@@ -91,8 +93,5 @@ public class CadastroUsuario extends AppCompatActivity {
         }else{
             Toast.makeText(CadastroUsuario.this, "Preencha os dados corretamente.", Toast.LENGTH_LONG).show();
         }
-
-
     }
-
 }
